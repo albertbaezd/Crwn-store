@@ -15,6 +15,37 @@ const config =
     measurementId: "G-WKFL35VKZB"
   };
 
+  export const createUserProfileDocument = async (userAuth, additionalData) => {
+    if(!userAuth) return;
+
+    const userRef = firestore.doc(`users/${userAuth.uid}`) //esto me devuelve la referencia
+
+    const snapShot = await userRef.get(); //con esto extraigo el objeto SnapshotObject de la ref.
+
+    if (!snapShot.exists) {
+      const { displayName, email } = userAuth;
+      const createdAt = new Date();
+
+      try {
+
+        await userRef.set({
+          displayName,
+          email,
+          createdAt,
+          ...additionalData
+        })
+      } catch (error) {
+        console.log('error creating user', error.message);
+      }
+    }
+
+    
+    return userRef;
+  };
+
+  
+
+
   firebase.initializeApp(config);
 
   export const auth = firebase.auth();
