@@ -1,4 +1,4 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app). This project consists of a e-commerce platform built using React, Sass, Redux and Bootstrap.
 
 ## Available Scripts
 
